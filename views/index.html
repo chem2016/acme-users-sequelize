@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' />
+  </head>
+  <body>
+    <div class='container'>
+    <h1>Acme Users CRUD-SEQ</h1>
+    <ul class='list-group'>
+      <% users.forEach(function(user){%>
+        <li class='list-group-item'>
+          <a href='/users/<%=user.id%>'>
+          <%= user.firstName %>
+          <%= user.lastName %>
+          </a>
+          <form method='post' action='/users/<%= user.id %>?_method=delete'>
+            <button class='btn btn-danger'>
+              Delete
+            </button>
+          </form>
+        </li>
+      <% }) %>
+    </ul>
+    <% if(user){ %>
+    <div style='border: solid 1px black; border-radius: 5px; margin-top: 10px; padding: 10px'>
+    <form method='post' action='/users/<%= user.id ? `${user.id}?_method=put`: '' %>' >
+      <input name='firstName' value='<%= user.firstName%>'/>
+      <input name='lastName' value='<%= user.lastName %>'/>
+      <button><%= user.id ? 'Update': 'Create' %></button>
+    <a href='/users'>Cancel</a>
+    </form>
+    </div>
+    <% } %>
+    <pre>
+acme-users-seq-crud
+ - suggested files
+   - server.js
+   - app.js
+   - server.js
+ - routes
+  - GET /
+  - GET /users
+  - POST /users
+  - PUT /users/:id
+  - DELETE /users/:id
+    </pre>
+    </div>
+  </body>
+</html>
